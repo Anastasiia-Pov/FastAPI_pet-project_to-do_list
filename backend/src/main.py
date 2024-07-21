@@ -1,17 +1,32 @@
+import logging
 from fastapi import FastAPI
 from auth.base_config import auth_backend, fastapi_users
 from auth.schemas import UserRead, UserCreate, UserUpdate
 from operations.router import router as router_operation
+from contextlib import asynccontextmanager
+from database import create_tables
+
+
+log = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await create_tables()
+    log.warning("База готова")
+    yield
+
 
 app = FastAPI(
-    title="To-do List"
+    # lifespan=lifespan,
+    title="To-do List",
 )
 
 # AUTH
 # login & logout
 app.include_router(
     fastapi_users.get_auth_router(auth_backend,
-                                  requires_verification=True ),
+                                  requires_verification=True),
     prefix="/auth/jwt",
     tags=["Auth-login&logout"],
 )
