@@ -7,7 +7,6 @@ from operations.models import operation
 from operations.schemas import TaskCreate, TaskStatus, TaskImportance
 
 router = APIRouter(
-    prefix="/tasks",
     tags=["Tasks"]
 )
 
