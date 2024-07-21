@@ -13,7 +13,7 @@ router = APIRouter(
 
 
 # получение всех задач
-@router.get('/get_all', tags=['get all tasks'])
+@router.get('/tasks')
 async def get_all_tasks(user_id: int,
                         session: AsyncSession = Depends(get_async_session)):
     try:
@@ -32,7 +32,7 @@ async def get_all_tasks(user_id: int,
 
 
 # получение задачи по id
-@router.get('/get_by_id', tags=['get task by id'])
+@router.get('/task/{id}')
 async def get_task_by_id(user_id: int,
                          task_id: int,
                          session: AsyncSession = Depends(get_async_session)):
@@ -58,7 +58,7 @@ async def get_task_by_id(user_id: int,
 
 
 # получение задачи - по приоритету:
-@router.get("/get_by_priority", tags=['get task by priority'])
+@router.get("/task_by_priority")
 async def get_task_priority(user_id: int,
                             type: TaskImportance,
                             session: AsyncSession = Depends(get_async_session)):
@@ -79,7 +79,7 @@ async def get_task_priority(user_id: int,
 
 
 # получение задачи - по готовности:
-@router.get("/get_by_status", tags=['get task by status'])
+@router.get("/task_by_status")
 async def get_task_status(user_id: int,
                           type: TaskStatus,
                           session: AsyncSession = Depends(get_async_session)):
@@ -100,8 +100,7 @@ async def get_task_status(user_id: int,
 
 
 # получение задачи - по статусу и готовности:
-@router.get("/get_by_status_and_priority",
-            tags=['get tasks by status and priority'])
+@router.get("/task_by_status_and_priority")
 async def get_task_pr_st(user_id: int,
                          priority: TaskImportance,
                          status: TaskStatus,
@@ -124,7 +123,7 @@ async def get_task_pr_st(user_id: int,
 
 
 # добавление задачи
-@router.post('/add_task', tags=['add task'])
+@router.post('/task')
 async def add_task(new_task: TaskCreate,
                    session: AsyncSession = Depends(get_async_session)):
     try:
@@ -141,7 +140,7 @@ async def add_task(new_task: TaskCreate,
 
 
 # редактирование задачи
-@router.put('/update_task', tags=['update task by id'])
+@router.put('/task/{id}')
 async def edit_task(task_id: int,
                     update_task: TaskCreate,
                     session: AsyncSession = Depends(get_async_session)):
@@ -167,7 +166,7 @@ async def edit_task(task_id: int,
 
 
 # удаление задачи по id:
-@router.delete('/delete_task', tags=['delete task by id'])
+@router.delete('/task/{id}')
 async def delete_task(task_id: int,
                       session: AsyncSession = Depends(get_async_session)):
     try:
