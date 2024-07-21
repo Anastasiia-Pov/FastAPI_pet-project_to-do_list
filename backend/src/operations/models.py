@@ -1,5 +1,8 @@
 from sqlalchemy import (ForeignKey, Table, Column, Integer, String, TIMESTAMP,
                         MetaData)
+from database import Base
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
+
 
 metadata = MetaData()
 
@@ -13,3 +16,13 @@ operation = Table(
     Column("status", String, nullable=False),
     Column("user_id", Integer, nullable=False, default=0)
 )
+
+
+class Tasks(Base):
+    __tablename__ = 'tasks'
+    id = Column(Integer, primary_key=True)
+    task = Column("task", String, nullable=False)
+    description = Column("description", String, nullable=True)
+    priority = Column("priority", String, nullable=False)
+    status = Column("status", String, nullable=False)
+    user_id = Column("user_id", Integer, nullable=False, default=0)
