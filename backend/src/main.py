@@ -5,7 +5,7 @@ from auth.schemas import UserRead, UserCreate, UserUpdate
 from operations.router import router as router_operation
 from contextlib import asynccontextmanager
 from database import create_tables
-
+from fastapi.middleware.cors import CORSMiddleware
 
 log = logging.getLogger(__name__)
 
@@ -21,6 +21,22 @@ app = FastAPI(
     lifespan=lifespan,
     title="To-do List",
 )
+
+
+origins = [
+    "http://localhost",
+    "http://localhost:5173",
+]
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # AUTH
 # login & logout
