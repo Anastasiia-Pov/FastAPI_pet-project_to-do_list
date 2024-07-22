@@ -40,6 +40,12 @@ async def get_all_tasks(user_id: int,
             return {'status': 'success',
                     'data': result.mappings().all(),
                     'details': None}
+        elif priority is None and status is None:
+            query = select(operation).where(operation.c.user_id == user_id)
+            result = await session.execute(query)
+            return {'status': 'success',
+                    'data': result.mappings().all(),
+                    'details': None}
     except Exception:
         raise HTTPException(status_code=500,
                             detail={'status': 'error',
