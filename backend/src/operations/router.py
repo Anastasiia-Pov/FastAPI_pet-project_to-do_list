@@ -14,14 +14,32 @@ router = APIRouter(
 # получение всех задач
 @router.get('/tasks')
 async def get_all_tasks(user_id: int,
+                        priority: TaskImportance = None,
+                        status: TaskStatus = None,
                         session: AsyncSession = Depends(get_async_session)):
     try:
-        query = select(operation).where(operation.c.user_id == user_id)
-        result = await session.execute(query)
-        return {
-            'status': 'success',
-            'data': result.mappings().all(),
-            'details': None}
+        if priority is not None and status is not None:
+            query = select(operation).where(operation.c.user_id == user_id,
+                                            operation.c.priority == priority,
+                                            operation.c.status == status)
+            result = await session.execute(query)
+            return {'status': 'success',
+                    'data': result.mappings().all(),
+                    'details': None}
+        elif priority is None and status is not None:
+            query = select(operation).where(operation.c.user_id == user_id,
+                                            operation.c.status == status)
+            result = await session.execute(query)
+            return {'status': 'success',
+                    'data': result.mappings().all(),
+                    'details': None}
+        elif priority is not None and status is None:
+            query = select(operation).where(operation.c.user_id == user_id,
+                                            operation.c.priority == priority)
+            result = await session.execute(query)
+            return {'status': 'success',
+                    'data': result.mappings().all(),
+                    'details': None}
     except Exception:
         raise HTTPException(status_code=500,
                             detail={'status': 'error',
@@ -48,71 +66,6 @@ async def get_task_by_id(user_id: int,
                     'details': None}
         else:
             return {'status': "No task with such a primary key."}
-    except Exception:
-        raise HTTPException(status_code=500,
-                            detail={'status': 'error',
-                                    'data': 'Error',
-                                    'details': 'Что-то пошло не так'
-                                    })
-
-
-# получение задачи - по приоритету:
-@router.get("/task_by_priority")
-async def get_task_priority(user_id: int,
-                            type: TaskImportance,
-                            session: AsyncSession = Depends(get_async_session)):
-    try:
-        query = select(operation).where(operation.c.user_id == user_id,
-                                        operation.c.priority == type)
-        result = await session.execute(query)
-        return {
-            'status': 'success',
-            'data': result.mappings().all(),
-            'details': None}
-    except Exception:
-        raise HTTPException(status_code=500,
-                            detail={'status': 'error',
-                                    'data': 'Error',
-                                    'details': 'Что-то пошло не так'
-                                    })
-
-
-# получение задачи - по готовности:
-@router.get("/task_by_status")
-async def get_task_status(user_id: int,
-                          type: TaskStatus,
-                          session: AsyncSession = Depends(get_async_session)):
-    try:
-        query = select(operation).where(operation.c.user_id == user_id,
-                                        operation.c.status == type)
-        result = await session.execute(query)
-        return {
-            'status': 'success',
-            'data': result.mappings().all(),
-            'details': None}
-    except Exception:
-        raise HTTPException(status_code=500,
-                            detail={'status': 'error',
-                                    'data': 'Error',
-                                    'details': 'Что-то пошло не так'
-                                    })
-
-
-# получение задачи - по статусу и готовности:
-@router.get("/task_by_status_and_priority")
-async def get_task_pr_st(user_id: int,
-                         priority: TaskImportance,
-                         status: TaskStatus,
-                         session: AsyncSession = Depends(get_async_session)):
-    try:
-        query = select(operation).where(operation.c.user_id == user_id,
-                                        operation.c.status == status,
-                                        operation.c.priority == priority)
-        result = await session.execute(query)
-        return {
-            'status': 'success',
-            'data': result.mappings().all(),
-            'details': None}
     except Exception:
         raise HTTPException(status_code=500,
                             detail={'status': 'error',
