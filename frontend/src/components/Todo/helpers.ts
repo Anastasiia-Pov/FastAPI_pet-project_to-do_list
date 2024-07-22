@@ -1,8 +1,10 @@
-import { TTodoForm } from "./types/TodoTypes.ts";
+import { TaskPriorities, TaskStatuses, TTodoForm } from "./types/TodoTypes.ts";
 
 export const getDefaultValues = (): TTodoForm => {
   return {
-    text: "",
-    is_active: true,
+    task: "",
+    description: "",
+    priority: TaskPriorities.Low,
+    status: TaskStatuses.Waiting,
   };
 };

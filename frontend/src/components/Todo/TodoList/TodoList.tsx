@@ -2,7 +2,8 @@ import {
   Card,
   CardBody,
   CardHeader,
-  OrderedList,
+  Heading,
+  List,
   Text,
 } from "@chakra-ui/react";
 import { TodoItem } from "../TodoItem/TodoItem.tsx";
@@ -10,26 +11,23 @@ import { Todo } from "../types/TodoTypes.ts";
 
 type TTodoList = {
   todos: Todo[];
-  deleteTodo: (value: string) => Promise<void>;
-  patchTodo: (value: string) => Promise<void>;
-  toggleTodo: (value: string) => Promise<void>;
+  heading: string;
+  deleteTodo: (value: number) => Promise<void>;
 };
 
-export const TodoList = ({ todos, ...rest }: TTodoList) => {
+export const TodoList = ({ todos, heading, ...rest }: TTodoList) => {
   return (
     <Card width="100%">
       <CardHeader>
-        <Text fontSize={"xl"} fontWeight={"bold"}>
-          Текущие задачи
-        </Text>
+        <Heading size={"md"}>{heading}</Heading>
       </CardHeader>
       <CardBody>
         {todos.length ? (
-          <OrderedList display={"flex"} flexDirection={"column"} gap={4}>
+          <List display={"flex"} flexDirection={"column"} gap={4}>
             {todos.map((todo, index) => (
               <TodoItem key={index} todo={todo} {...rest} />
             ))}
-          </OrderedList>
+          </List>
         ) : (
           <Text>Нет задач</Text>
         )}

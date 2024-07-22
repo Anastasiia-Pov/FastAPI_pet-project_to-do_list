@@ -1,54 +1,74 @@
-import { Button, ButtonGroup, Flex, ListItem, Switch } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Flex,
+  Heading,
+  ListItem,
+  Progress,
+  Text,
+} from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { Todo } from "../types/TodoTypes.ts";
+import { TaskPriorities, Todo } from "../types/TodoTypes.ts";
 
 type TTodoItem = {
   todo: Todo;
-  deleteTodo: (value: string) => Promise<void>;
-  patchTodo: (value: string) => Promise<void>;
-  toggleTodo: (value: string) => Promise<void>;
+  deleteTodo: (value: number) => Promise<void>;
 };
 
 export const TodoItem = (props: TTodoItem) => {
-  const toggleTodo = async () => {
-    await props.toggleTodo(props.todo.text);
-  };
-
-  const patchTodo = async () => {
-    await props.patchTodo(props.todo.text);
-  };
-
   const deleteTodo = async () => {
-    await props.deleteTodo(props.todo.text);
+    await props.deleteTodo(props.todo.id);
+  };
+
+  const calculateProgress = (priority: TaskPriorities) => {
+    switch (priority) {
+      case TaskPriorities.Low:
+        return {
+          value: 33,
+          colorScheme: "green",
+        };
+      case TaskPriorities.Medium:
+        return {
+          value: 66,
+          colorScheme: "yellow",
+        };
+      case TaskPriorities.High:
+        return {
+          value: 100,
+          colorScheme: "red",
+        };
+    }
   };
 
   return (
-    <Flex alignItems="center" gap={8}>
-      <Switch
-        colorScheme={"teal"}
-        isChecked={props.todo.is_active}
-        onChange={toggleTodo}
-      />
-      <ListItem minWidth={200}>{props.todo.text}</ListItem>
-      <ButtonGroup>
-        <Button
-          isDisabled={true}
-          onClick={patchTodo}
-          colorScheme={"blue"}
-          leftIcon={<EditIcon />}
-          size={"sm"}
-        >
-          Редактировать
-        </Button>
-        <Button
-          onClick={deleteTodo}
-          colorScheme={"red"}
-          leftIcon={<DeleteIcon />}
-          size={"sm"}
-        >
-          Удалить
-        </Button>
-      </ButtonGroup>
-    </Flex>
+    <Card p={5}>
+      <Flex flexDirection={"column"} gap={8}>
+        <ListItem>
+          <Heading size={"sm"}>{props.todo.task}</Heading>
+          <Text>{props.todo.description}</Text>
+          <Heading size={"xs"}>Приоритет</Heading>
+          <Progress {...calculateProgress(props.todo.priority)} />
+        </ListItem>
+        <ButtonGroup>
+          <Button
+            isDisabled={true}
+            colorScheme={"blue"}
+            leftIcon={<EditIcon />}
+            size={"sm"}
+          >
+            Редактировать
+          </Button>
+          <Button
+            onClick={deleteTodo}
+            colorScheme={"red"}
+            leftIcon={<DeleteIcon />}
+            size={"sm"}
+          >
+            Удалить
+          </Button>
+        </ButtonGroup>
+      </Flex>
+    </Card>
   );
 };

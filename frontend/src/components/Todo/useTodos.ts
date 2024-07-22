@@ -1,66 +1,68 @@
-import { useState } from "react";
-import { Todo, TTodoForm } from "./types/TodoTypes.ts";
+import {useState} from "react";
+import {Todo, TTodoForm} from "./types/TodoTypes.ts";
+import {useToast} from "@chakra-ui/react";
 
 export const useTodos = () => {
-  const [todos, setTodos] = useState<Todo[]>([
-    { text: "kek", is_active: true },
-    { text: "lol", is_active: false },
-    { text: "validol", is_active: true },
-  ]);
+  const toast = useToast();
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const fetchTodos = async () => {
     try {
-      //const response = await fetch("/api/todos");
-      //const json = await response.json();
-      //setTodos(json);
-      //setTodos([]);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/tasks?user_id=0`,
+      );
+      const json = await response.json();
+      setTodos(json.data);
     } catch (error) {
+      const e = error as Error;
+      toast({
+        title: "Ошибка",
+        description: e.message,
+        status: "error",
+      });
       console.error(error);
     }
   };
 
-  const createTodo = async (data: TTodoForm) => {
+  const submitTodo = async (data: TTodoForm) => {
     try {
-      //await fetch("api/todos", { method: "POST", body: JSON.stringify(data) });
-      //await fetchTodos();
-      setTodos((prevState) => [...prevState, data]);
-      console.log(todos);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const patchTodo = async (data: string) => {
-    try {
-      await fetch("api/todos", {
-        method: "PATCH",
-        body: JSON.stringify({ data }),
+      const method = data.id ? "PUT" : "POST";
+      await fetch(`${import.meta.env.VITE_API_URL}/task`, {
+        method,
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({...data, user_id: 0}),
+      });
+      toast({
+        description: `Задача ${data.task} добавлена`,
+        status: "success",
       });
       await fetchTodos();
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const toggleTodo = async (text: string) => {
-    try {
-      const newTodos = todos.map((todo) => {
-        if (todo.text === text) {
-          return { ...todo, is_active: !todo.is_active };
-        }
-        return todo;
+      const e = error as Error;
+      toast({
+        title: "Ошибка",
+        description: e.message,
+        status: "error",
       });
-      setTodos(newTodos);
-    } catch (error) {
       console.error(error);
     }
   };
 
-  const deleteTodo = async (text: string) => {
+  const deleteTodo = async (id: number) => {
     try {
-      //await fetch(`api/todos/${text}`, { method: "DELETE" });
-      setTodos((prevState) => prevState.filter((todo) => todo.text !== text));
+      await fetch(`${import.meta.env.VITE_API_URL}/task/${id}`, {
+        method: "DELETE",
+      });
+      await fetchTodos();
     } catch (error) {
+      const e = error as Error;
+      toast({
+        title: "Ошибка",
+        description: e.message,
+        status: "error",
+      });
       console.error(error);
     }
   };
@@ -68,9 +70,7 @@ export const useTodos = () => {
   return {
     todos,
     fetchTodos,
-    createTodo,
-    patchTodo,
-    toggleTodo,
+    submitTodo,
     deleteTodo,
   };
 };
