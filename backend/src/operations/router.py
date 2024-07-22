@@ -51,14 +51,14 @@ async def get_all_tasks(user_id: int,
 # получение задачи по id
 @router.get('/task/{id}')
 async def get_task_by_id(user_id: int,
-                         task_id: int,
+                         id: int,
                          session: AsyncSession = Depends(get_async_session)):
     try:
         query = select(operation).where(operation.c.user_id == user_id,
-                                        operation.c.id == task_id)
+                                        operation.c.id == id)
         result = await session.execute(query)
-        if result.scalars().first() == task_id:
-            query = select(operation).where(operation.c.id == task_id)
+        if result.scalars().first() == id:
+            query = select(operation).where(operation.c.id == id)
             result = await session.execute(query)
             return {
                     'status': 'success',
@@ -93,20 +93,20 @@ async def add_task(new_task: TaskCreate,
 
 # редактирование задачи
 @router.put('/task/{id}')
-async def edit_task(task_id: int,
+async def edit_task(id: int,
                     update_task: TaskCreate,
                     session: AsyncSession = Depends(get_async_session)):
     try:
-        query = select(operation).where(operation.c.id == task_id)
+        query = select(operation).where(operation.c.id == id)
         result = await session.execute(query)
         # print(result.fetchone())
-        if result.scalars().first() == task_id:
+        if result.scalars().first() == id:
             stmt = (update(operation)
-                    .where(operation.c.id == task_id)
+                    .where(operation.c.id == id)
                     .values(**update_task.model_dump()))
             await session.execute(stmt)
             await session.commit()
-            return {'status': f'The decsription of the task-{task_id} is updated successfully'}
+            return {'status': f'The decsription of the task-{id} is updated successfully'}
         else:
             return {'status': "No task with such a primary key."}
     except Exception:
@@ -119,12 +119,12 @@ async def edit_task(task_id: int,
 
 # удаление задачи по id:
 @router.delete('/task/{id}')
-async def delete_task(task_id: int,
+async def delete_task(id: int,
                       session: AsyncSession = Depends(get_async_session)):
     try:
-        stmt = delete(operation).where(operation.c.id == task_id)
+        stmt = delete(operation).where(operation.c.id == id)
         await session.execute(stmt)
         await session.commit()
-        return {'status': f'The task with id-{task_id} deleted successfully'}
+        return {'status': f'The task with id-{id} deleted successfully'}
     except Exception:
         return {'status': 'Something went wrong.'}
