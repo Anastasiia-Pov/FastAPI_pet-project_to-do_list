@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import delete, select, insert, update
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from sqlalchemy import case
 from database import get_async_session
 from operations.models import operation
 from operations.schemas import TaskCreate, TaskStatus, TaskImportance
@@ -18,34 +18,15 @@ async def get_all_tasks(user_id: int,
                         status: TaskStatus = None,
                         session: AsyncSession = Depends(get_async_session)):
     try:
-        if priority is not None and status is not None:
-            query = select(operation).where(operation.c.user_id == user_id,
-                                            operation.c.priority == priority,
-                                            operation.c.status == status)
-            result = await session.execute(query)
-            return {'status': 'success',
-                    'data': result.mappings().all(),
-                    'details': None}
-        elif priority is None and status is not None:
-            query = select(operation).where(operation.c.user_id == user_id,
-                                            operation.c.status == status)
-            result = await session.execute(query)
-            return {'status': 'success',
-                    'data': result.mappings().all(),
-                    'details': None}
-        elif priority is not None and status is None:
-            query = select(operation).where(operation.c.user_id == user_id,
-                                            operation.c.priority == priority)
-            result = await session.execute(query)
-            return {'status': 'success',
-                    'data': result.mappings().all(),
-                    'details': None}
-        else:
-            query = select(operation).where(operation.c.user_id == user_id)
-            result = await session.execute(query)
-            return {'status': 'success',
-                    'data': result.mappings().all(),
-                    'details': None}
+        q = select(operation).where(operation.c.user_id == user_id)
+        if (priority is not None):
+            q = q.where(operation.c.priority == priority)
+        if (status is not None):
+            q = q.where(operation.c.status == status)
+        result = await session.execute(q)
+        return {'status': 'success',
+                'data': result.mappings().all(),
+                'details': None}
     except Exception:
         raise HTTPException(status_code=500,
                             detail={'status': 'error',
