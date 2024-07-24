@@ -4,7 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import case
 from database import get_async_session
 from operations.models import operation
-from operations.schemas import TaskCreate, TaskStatus, TaskImportance
+from operations.schemas import (TaskCreate, TaskStatus, TaskImportance,
+                                PartialEdit)
 
 router = APIRouter(
     tags=["Tasks"]
@@ -96,6 +97,28 @@ async def edit_task(id: int,
             return {'status': f'The decsription of the task-{id} is updated successfully'}
         else:
             return {'status': "No task with such a primary key."}
+    except Exception:
+        raise HTTPException(status_code=500,
+                            detail={'status': 'error',
+                                    'data': 'Error',
+                                    'details': 'Что-то пошло не так'
+                                    })
+
+
+# частичное обновление задачи (изменение статуса или приоритета)
+@router.patch('/tasks/{id}')
+async def partial_edit(id: int,
+                       priority: TaskImportance = TaskImportance.low,
+                       status: TaskStatus = TaskStatus.in_progress,
+                       session: AsyncSession = Depends(get_async_session)):
+    try:
+        stmt = (update(operation)
+                .where(operation.c.id == id)
+                .values(status=status,
+                        priority=priority))
+        await session.execute(stmt)
+        await session.commit()
+        return {'status': f'The status & priority of the task-{id} is updated successfully'}
     except Exception:
         raise HTTPException(status_code=500,
                             detail={'status': 'error',
