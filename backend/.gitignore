@@ -168,3 +168,5 @@ cython_debug/
 #.idea/
 
 users_request.py
+pyproject.toml
+tests

@@ -36,7 +36,7 @@ async def get_all_tasks(user_id: int,
 
 
 # получение задачи по id
-@router.get('/task/{id}')
+@router.get('/tasks/{id}')
 async def get_task_by_id(user_id: int,
                          id: int,
                          session: AsyncSession = Depends(get_async_session)):
@@ -62,7 +62,7 @@ async def get_task_by_id(user_id: int,
 
 
 # добавление задачи
-@router.post('/task')
+@router.post('/tasks')
 async def add_task(new_task: TaskCreate,
                    session: AsyncSession = Depends(get_async_session)):
     try:
@@ -79,7 +79,7 @@ async def add_task(new_task: TaskCreate,
 
 
 # редактирование задачи
-@router.put('/task/{id}')
+@router.put('/tasks/{id}')
 async def edit_task(id: int,
                     update_task: TaskCreate,
                     session: AsyncSession = Depends(get_async_session)):
@@ -105,7 +105,7 @@ async def edit_task(id: int,
 
 
 # удаление задачи по id:
-@router.delete('/task/{id}')
+@router.delete('/tasks/{id}')
 async def delete_task(id: int,
                       session: AsyncSession = Depends(get_async_session)):
     try:
