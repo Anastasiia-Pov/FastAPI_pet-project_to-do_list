@@ -13,10 +13,11 @@ router = APIRouter(
 
 # получение всех задач
 @router.get('/tasks', summary='Get all tasks')
-async def get_all_tasks(user_id: int,
-                        priority: TaskImportance = None,
-                        status: TaskStatus = None,
-                        session: AsyncSession = Depends(get_async_session)):
+async def get_tasks(user_id: int,
+                    priority: TaskImportance = None,
+                    status: TaskStatus = None,
+                    session: AsyncSession = Depends(get_async_session),
+                    ):
     """
     Get tasks according to the request:
 
