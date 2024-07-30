@@ -1,21 +1,23 @@
 import logging
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from auth.base_config import auth_backend, fastapi_users
 from auth.schemas import UserRead, UserCreate, UserUpdate
 from operations.router import router as router_operation
 from contextlib import asynccontextmanager
-from database import create_tables
-from fastapi.middleware.cors import CORSMiddleware
 
+from database import create_tables, shut_down_db
 log = logging.getLogger(__name__)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await create_tables()
-    log.warning("База готова")
+    log.warning("БД готова")
     yield
-
+    await shut_down_db()
+    log.warning("БД выключена")
 
 app = FastAPI(
     lifespan=lifespan,

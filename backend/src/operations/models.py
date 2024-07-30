@@ -1,10 +1,7 @@
-from sqlalchemy import (ForeignKey, Table, Column, Integer, String, TIMESTAMP,
-                        MetaData)
-from database import Base
+from sqlalchemy import (Table, Column, Integer, String)
+from database import metadata, Base
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
 
-
-metadata = MetaData()
 
 operation = Table(
     "tasks",
@@ -20,6 +17,7 @@ operation = Table(
 
 class Tasks(Base):
     __tablename__ = 'tasks'
+    # __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     task = Column("task", String, nullable=False)
     description = Column("description", String, nullable=True)

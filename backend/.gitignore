@@ -169,4 +169,5 @@ cython_debug/
 
 users_request.py
 pyproject.toml
+postman-test
 tests

@@ -5,6 +5,7 @@ from sqlalchemy import case
 from database import get_async_session
 from operations.models import operation
 from operations.schemas import TaskCreate, TaskStatus, TaskImportance
+from auth.base_config import current_user
 
 router = APIRouter(
     tags=["Tasks"]

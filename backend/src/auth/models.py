@@ -1,14 +1,12 @@
 from datetime import datetime
 
 from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-from sqlalchemy import (Table, Column, Integer, String, TIMESTAMP, ForeignKey,
-                        JSON, Boolean, MetaData)
+from sqlalchemy import (Table, Column, Integer, String, TIMESTAMP, Boolean)
 
-from database import Base
+from database import Base, metadata
 
-metadata = MetaData()
 
-users = Table(
+user = Table(
     "user",
     metadata,
     Column("id", Integer, primary_key=True),
@@ -23,6 +21,8 @@ users = Table(
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
+    __tablename__ = "user"
+    # __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
     username = Column(String, nullable=False)
