@@ -42,8 +42,9 @@ Main points:
 - Authentification and registration of users implemented using FastApiUsers framework;
 - Database - PostgreSQL, work with DB is carried out by SQLAlchemy ORM;
 - Authentification transport is cookie;
-- Authentification strategy is JWTStrategy;
+- Authentification strategy is JWTStrategy.
 
+Files structure:
 1. ```src/``` - contains common models, configs, and constants, etc.:
     1. ```auth/``` - contains all the models, schemas, configs that are essential for registretion and authentification processes;
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=450 />
