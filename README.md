@@ -3,7 +3,7 @@
 ## Project is motivated by learning backend using FastAPI and FastAPI Users frameworks, PostgreSQL, SQLAlchemy and PyTest.
 
 ### Requirements
-Python 3.12 with all the [requirements.txt] (https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/requirements.txt) dependencies installed.
+Python 3.12 with all the [requirements.txt](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/requirements.txt) dependencies installed.
 
 ### Project structure: Backend
 
@@ -60,4 +60,4 @@ Other endpoints are available in ```src/operations/router.py```
 
 4. ```env_example.py``` - is for .env, contains all the necessary variable that are needed to be specified.
 
-## Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
+## Frontend is implemented by [StRenedas](https://github.com/StRenedas).
