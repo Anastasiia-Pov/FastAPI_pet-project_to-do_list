@@ -13,7 +13,7 @@ backend/
 │  │  ├─ models.py
 │  │  ├─ schemas.py
 │  │  ├─ utils.py
-│  │  ├─ htmlcov/
+│  ├─ htmlcov/
 │  ├─ operations/
 │  │  ├─ models.py
 │  │  ├─ router.py
@@ -33,6 +33,8 @@ backend/
 ├─ requirements.txt
 ├─ alembic.ini
 ```
+1. src/ - contains common models, configs, and constants, etc.
+    i. auth/ - contains all the models, schemas, configs that are essential for registretion and authentification processes;
+    ![Auth endpoints](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png)
 
-
-####  Frontend is implemented by [StRenedas] (https://github.com/StRenedas)
+####  Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
