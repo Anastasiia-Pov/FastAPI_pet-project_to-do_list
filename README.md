@@ -34,7 +34,7 @@ backend/
 ├─ alembic.ini
 ```
 
-1. src/ - contains common models, configs, and constants, etc.:
+1. [src/] (https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/tree/main/backend/src) - contains common models, configs, and constants, etc.:
     - Authentification and registration of users implemented using FastApiUsers framework;
     - Database - PostgreSQL, work with DB is carried out by SQLAlchemy ORM;
     - Authentification transport is cookie;
@@ -51,7 +51,7 @@ Other endpoints are available in src/operations/router.py
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/get%3Atasks.png width=450 />
 
 3. tests/ - contains files to execute tests with pytest. Coverage is performed by coverage.py. Percantage of coverage is 84%.
-<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/coverage_pytests.png width=500 />
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/coverage_pytests.png width=750 />
 
 4. env_example.py - is for .env, contains all the necessary variable that are needed to be specified.
 
