@@ -17,7 +17,6 @@ operation = Table(
 
 class Tasks(Base):
     __tablename__ = 'tasks'
-    # __table_args__ = {'extend_existing': True}
     id = Column(Integer, primary_key=True)
     task = Column("task", String, nullable=False)
     description = Column("description", String, nullable=True)
