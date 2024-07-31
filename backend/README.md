@@ -4,26 +4,7 @@ Project is motivated by learning backend using FastAPI framework, PostgreSQL, SQ
 
 Project structure:
 #### Backend
-├── src
-│   ├── auth
-│   │   ├── base_config.py
-│   │   ├── manager.py
-│   │   ├── models.py
-│   │   ├── schemas.py
-│   │   ├── mm
-│   ├── htmlcov
-│   ├── operations
-│   │   ├── models.py
-│   │   ├── router.py
-│   │   ├── schems.py
-├── migrations
-├── postman-test
-│── tests
-├── pyproject.toml
-├── requirements.txt
-├── alembic.ini
-
-
+```
 backend/
 ├─ src/
 │  ├─ auth/
@@ -51,7 +32,7 @@ backend/
 ├─ pyproject.toml
 ├─ requirements.txt
 ├─ alembic.ini
-
+```
 
 
 ####  Frontend is implemented by [StRenedas] (https://github.com/StRenedas)
