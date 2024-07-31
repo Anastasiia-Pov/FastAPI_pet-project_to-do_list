@@ -78,4 +78,4 @@ async def get_tasks(user_id: int,
                                     })
 ```
 
-####  Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
+Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
