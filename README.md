@@ -39,10 +39,10 @@ backend/
 ```
 
 Main points:
-    - Authentification and registration of users implemented using FastApiUsers framework;
-    - Database - PostgreSQL, work with DB is carried out by SQLAlchemy ORM;
-    - Authentification transport is cookie;
-    - Authentification strategy is JWTStrategy;
+- Authentification and registration of users implemented using FastApiUsers framework;
+- Database - PostgreSQL, work with DB is carried out by SQLAlchemy ORM;
+- Authentification transport is cookie;
+- Authentification strategy is JWTStrategy;
 
 1. ```src/``` - contains common models, configs, and constants, etc.:
     1. ```auth/``` - contains all the models, schemas, configs that are essential for registretion and authentification processes;
