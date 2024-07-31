@@ -51,7 +51,7 @@ backend/
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 />
 
 #### e.g. Get request: get all tasks (filter is implemented to filter tasks according to the user, priority and status)
-Other endpoints are available in ```src/operations/router.py```
+Other endpoints are available in [src/operations/router.py](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/src/operations/router.py)
 
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/get%3Atasks.png width=450 />
 
