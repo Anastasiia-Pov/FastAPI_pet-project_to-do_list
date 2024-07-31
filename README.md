@@ -40,7 +40,7 @@ backend/
 
 Main points:
 - Authentification and registration of users implemented using FastApiUsers framework;
-- Database - PostgreSQL, work with DB is carried out by SQLAlchemy ORM;
+- Database - PostgreSQL, work with DB is carried out with async by SQLAlchemy ORM;
 - Authentification transport is cookie;
 - Authentification strategy is JWTStrategy.
 
@@ -58,6 +58,7 @@ Other endpoints are available in [src/operations/router.py](https://github.com/A
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/get%3Atasks.png width=450 />
 
 3. ```tests/``` - contains files to execute tests with pytest. Coverage is performed by coverage.py. Percantage of coverage is 84%.
+```class_index.html``` contains information presented below
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/coverage_pytests.png width=800 />
 
 4. ```env_example.py``` - is for .env, contains all the necessary variable that are needed to be specified.
