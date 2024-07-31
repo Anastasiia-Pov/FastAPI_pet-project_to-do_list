@@ -37,5 +37,7 @@ backend/
     i. auth/ - contains all the models, schemas, configs that are essential for registretion and authentification processes;
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=408 />
 2. operations/ - contains all the models, schemas, endpoints for working with tasks (add, edit, delete task)
-    ![Tasks endpoints](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png =544x254)
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=300 />
+
+
 ####  Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
