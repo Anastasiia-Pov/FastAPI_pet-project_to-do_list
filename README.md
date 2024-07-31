@@ -28,7 +28,7 @@ backend/
 │  ├─ conftest.py
 │  ├─ operations_test.py
 ├─ .gitignore
-├─ .env
+├─ env_example.py
 ├─ pyproject.toml
 ├─ requirements.txt
 ├─ alembic.ini
@@ -47,6 +47,12 @@ backend/
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 />
 
 #### e.g. Get request: get all tasks (filter is implemented to filter tasks according to the user, priority and status)
+Other endpoints are available in src/operations/router.py
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/get%3Atasks.png width=450 />
+
+3. tests/ - contains files to execute tests with pytest. Coverage is performed by coverage.py. Percantage of coverage is 84%.
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/coverage_pytests.png width=450 />
+
+4. env_example.py - is for .env, contains all the necessary variable that are needed to be specified.
 
 ## Frontend is implemented by [StRenedas] (https://github.com/StRenedas).
