@@ -48,16 +48,14 @@ Files structure:
 1. ```src/``` - contains common models, configs, and constants, etc.:
     1. ```auth/``` - contains all the models, schemas, configs that are essential for registretion and authentification processes;
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=450 />
-
     1. ```operations/``` - contains all the models, schemas, endpoints for working with tasks (add, edit, delete task)
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 />
+    1. ```main.py``` - entry point
 
 #### e.g. Get request: get all tasks (filter is implemented to filter tasks according to the user, priority and status)
 Other endpoints are available in [src/operations/router.py](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/src/operations/router.py)
 
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/get%3Atasks.png width=450 />
-
-    1. ```main.py``` - entry point
 
 3. ```tests/``` - contains files to execute tests with pytest. Coverage is performed by coverage.py. Percantage of coverage is 84%.
 ```class_index.html``` contains information presented below
