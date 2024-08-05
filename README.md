@@ -46,11 +46,11 @@ Main points:
 
 Files structure:
 1. ```src/``` - contains common models, configs, and constants, etc.:
-    1. ```auth/``` - contains all the models, schemas, configs that are essential for registretion and authentification processes;
+    i. ```auth/``` - contains all the models, schemas, configs that are essential for registretion and authentification processes;
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=450 />
-    2. ```operations/``` - contains all the models, schemas, endpoints for working with tasks (add, edit, delete task);
+    ii. ```operations/``` - contains all the models, schemas, endpoints for working with tasks (add, edit, delete task);
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 />
-    3. ```main.py``` - entry point;
+    iii. ```main.py``` - entry point;
 
 #### e.g. Get request: get all tasks (filter is implemented to filter tasks according to the user, priority and status)
 Other endpoints are available in [src/operations/router.py](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/src/operations/router.py)
