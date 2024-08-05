@@ -51,9 +51,8 @@ Files structure:
     - ```operations/``` - contains all the models, schemas, endpoints for working with tasks (add, edit, delete task);
     - ```main.py``` - entry point;
 
-<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=450 />
-<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 />
-
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Auth.png width=450 /> Fig. 1 Authentification endpoints
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/Tasks.png width=450 /> Fig. 2 To-do List endpoints
 
 #### e.g. Get request: get all tasks (filter is implemented to filter tasks according to the user, priority and status)
 Other endpoints are available in [src/operations/router.py](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/src/operations/router.py)
