@@ -32,7 +32,7 @@ backend/
 │  ├─ conftest.py
 │  ├─ operations_test.py
 ├─ .gitignore
-├─ env_example.py
+├─ .env.example
 ├─ pyproject.toml
 ├─ requirements.txt
 ├─ alembic.ini
