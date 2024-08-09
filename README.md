@@ -67,4 +67,8 @@ Other endpoints are available in [src/operations/router.py](https://github.com/A
 
 5. ```.env.example``` - is for .env, contains all the necessary variable that are needed to be specified.
 
+Implemented:
+- password validation;
+- email validation;
+
 ## Frontend is implemented by [StRenedas](https://github.com/StRenedas).
