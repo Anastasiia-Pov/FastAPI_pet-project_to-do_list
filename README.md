@@ -69,7 +69,8 @@ Other endpoints are available in [src/operations/router.py](https://github.com/A
 
 5. ```.env.example``` - is for .env, contains all the necessary variable that are needed to be specified.
 
-6. ```pages``` - contains routers for html layouts ```templates``` - contains html layouts.
+6. - ```pages``` - contains routers for html layouts
+   - ```templates``` - contains html layouts (example of a website how FastAPI can be applied).
 
 <img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/html_layout_for_tasks_board.png>
 Fig. 3 HTML layout for the project
