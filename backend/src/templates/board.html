@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+
+.row {
+    display: flex;
+    gap: 10px;
+
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="column" id="status_waiting" style="display: flex; flex-direction: column; gap: 10px;">
+            <h1 style="text-align: center;">Ожидают</h1>
+            <div style="background-color:#d06868;padding: 5px;">
+                <h3>Задача 1</h3>
+                <p>Описание задачи</p>
+                <progress max=100 value=0 ></progress>
+            </div>
+            <div style="background-color:#d06868;padding: 5px;">
+                <h2>Задача 2</h2>
+                <p>Описание задачи</p>
+                <progress max=100 value=0 ></progress>
+            </div>
+        </div>
+        <div class="column" id="status_in_progress" style="display: flex; flex-direction: column; gap: 10px;">
+            <h2 style="text-align: center;">В прогрессе</h2>
+            <div style="background-color:#eafc82;padding: 5px;">
+                <h2>Задача 1</h2>
+                <p>Описание задачи</p>
+                <progress max=100 value=50 ></progress>
+            </div>
+            <div style="background-color:#eafc82;padding: 5px;">
+                <h2>Задача 2</h2>
+                <p>Описание задачи</p>
+                <progress max=100 value=50 ></progress>
+            </div>
+        </div>
+        <div class="column" id="status_done" style="display: flex; flex-direction: column; gap: 10px;">
+            <h2 style="text-align: center;">Выполнено</h2>
+            <div style="background-color:#95ff9c; padding: 5px;">
+                <h2>Задача 1</h2>
+                <p>Описание задачи</p>
+                <progress max=100 value=100></progress>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
