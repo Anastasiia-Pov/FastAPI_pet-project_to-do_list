@@ -22,6 +22,8 @@ backend/
 │  │  ├─ models.py
 │  │  ├─ router.py
 │  │  ├─ schemas.py
+│  ├─ pages/
+│  ├─ templates/
 │  ├─ config.py
 │  ├─ database.py
 │  ├─ main.py
@@ -67,7 +69,11 @@ Other endpoints are available in [src/operations/router.py](https://github.com/A
 
 5. ```.env.example``` - is for .env, contains all the necessary variable that are needed to be specified.
 
-Implemented:
+6. ```pages``` - contains routers for html layouts```templates``` - contains html layouts.
+
+<img src=https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/backend_visuals/html_layout_for_tasks_board.png>
+
+### Implemented:
 - password validation;
 - email validation;
 
