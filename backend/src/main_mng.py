@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from auth.base_config import auth_backend, fastapi_users
 from auth.schemas import UserRead, UserCreate, UserUpdate
-from operations.router import router as router_operation
+# from operations.router import router as router_operation
 from contextlib import asynccontextmanager
 from database import create_tables, shut_down_db
 from pages.router import router as router_pages
@@ -19,10 +19,14 @@ log = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await create_tables()
-    log.warning("БД готова")
+    app.mongodb_client = AsyncMongoClient(f"mongodb://{MONGO_HOST}:{MONGO_PORT}/")
+    app.database = app.mongodb_client[MONGO_DB]
+    # col_tasks = app.database["tasks"]
+    # col_users = app.database["users"]
+    log.warning("Connected to the MongoDB database!")
     yield
-    log.warning("БД остановлена")
+    await app.mongodb_client.close()
+    log.warning("Disconnected from the MongoDB database!")
 
 
 app = FastAPI(
@@ -30,7 +34,8 @@ app = FastAPI(
     title="To-do List",
 )
 
-app.include_router(router_operation)
+# app.include_router(router_operation)
+app.include_router(router_mongo)
 app.include_router(router_pages)
 
 
