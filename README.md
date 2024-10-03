@@ -1,6 +1,6 @@
 # FastAPI_pet-project_to-do_list
 
-## Project is motivated by learning backend using FastAPI and FastAPI Users web-frameworks, PostgreSQL, SQLAlchemy and PyTest.
+## Project is motivated by learning backend using FastAPI and FastAPI Users web-frameworks, PostgreSQL, SQLAlchemy, PyTest.
 
 ### Requirements
 Python 3.12 with all the [requirements.txt](https://github.com/Anastasiia-Pov/FastAPI_pet-project_to-do_list/blob/main/backend/requirements.txt) dependencies installed.
@@ -40,9 +40,12 @@ backend/
 ├─ alembic.ini
 ```
 
+! Part of the project (the concerns work with MongoDB is in the mongodb_branch)
+
 Main points:
 - Authentification and registration of users implemented using FastApiUsers framework;
-- Database - PostgreSQL, work with DB is carried out with async by SQLAlchemy ORM;
+- Database - PostgreSQL, work with DB is carried out with async by SQLAlchemy ORM
+           - Mongo DB, work with DB is carried out by motor and PyMongo;
 - Authentification transport is cookie;
 - Authentification strategy is JWTStrategy.
 
