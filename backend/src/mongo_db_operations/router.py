@@ -5,9 +5,9 @@ from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
 from starlette.requests import Request
-from pymongo import AsyncMongoClient
-from mongo_db_operations.mongodb_task_models import TaskCreate, GetTaskbyID, UpdateTask
-from config import MONGO_DB
+from mongo_db_operations.mongodb_task_models import (TaskCreate,
+                                                     UpdateTask, TaskStatus,
+                                                     TaskPriority)
 
 router_mongo = APIRouter(
     tags=["Tasks"]
@@ -109,6 +109,35 @@ async def edit_task(id: str,
                                                                              "description": update_task.description,
                                                                              "priority": update_task.priority,
                                                                              "status": update_task.status}})
+            return f"Task with id {id} successfully updated!"
+        else:
+            raise HTTPException(status_code=404, detail=f"There is no task with the id {id}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# частичное обновление задачи (изменение статуса или приоритета)
+@router_mongo.patch('/tasks/{id}', summary='Edit status and priority of a task')
+async def partial_edit(id: str,
+                       username: str,
+                       request: Request,
+                       priority: TaskPriority = TaskPriority.low,
+                       status: TaskStatus = TaskStatus.waiting):
+    """
+    Partial update of a task:
+
+    - **id**: id of a task
+    - **priority**: default value 'low'
+    - **status**: default value 'waiting'
+    """
+    try:
+        task = await request.app.database["tasks"].find_one({"username": username,
+                                                             "_id": ObjectId(id)})
+        if task:
+            task = await request.app.database["tasks"].update_one({"username": username,
+                                                                   "_id": ObjectId(id)},
+                                                                  {'$set': {"priority": priority,
+                                                                            "status": status}})
             return f"Task with id {id} successfully updated!"
         else:
             raise HTTPException(status_code=404, detail=f"There is no task with the id {id}")

@@ -24,25 +24,8 @@ class TaskCreate(BaseModel):
     username: str
 
 
-class GetTaskbyID(BaseModel):
-    id: str
-    username: str
-
-
 class UpdateTask(BaseModel):
     task: str
     description: str
     priority: TaskPriority
     status: TaskStatus
-
-
-class UpdateDescription(BaseModel):
-    task: str
-
-
-class UpdatePriority(BaseModel):
-    task: TaskPriority
-
-
-class UpdateStatus(BaseModel):
-    task: TaskStatus

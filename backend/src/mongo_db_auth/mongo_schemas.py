@@ -1,9 +1,10 @@
 from typing import Optional
+import uuid
 from pydantic import EmailStr
 from fastapi_users import schemas
 
 
-class UserRead(schemas.BaseUser[int]):
+class UserRead(schemas.BaseUser[uuid.UUID]):
     id: int
     email: EmailStr
     username: str

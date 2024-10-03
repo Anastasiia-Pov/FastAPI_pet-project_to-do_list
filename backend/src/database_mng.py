@@ -1,6 +1,14 @@
-# from pymongo.mongo_client import MongoClient
+import motor.motor_asyncio
+from beanie import Document
+from fastapi_users.db import BeanieBaseUser, BeanieUserDatabase
+from config import MONGO_HOST, MONGO_PORT
 
 
+DATABASE_URL = f"mongodb://{MONGO_HOST}:{MONGO_PORT}/"
+client = motor.motor_asyncio.AsyncIOMotorClient(
+    DATABASE_URL, uuidRepresentation="standard"
+)
+db = client["database_name"]
 
 # Create a MongoDB client
 # client = AsyncMongoClient(f"mongodb://{MONGO_HOST}:{MONGO_PORT}/")

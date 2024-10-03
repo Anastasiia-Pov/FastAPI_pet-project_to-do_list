@@ -1,11 +1,13 @@
-from typing import Optional
 import uuid
-from pydantic import BaseModel, Field
+from pydantic import Field
 from datetime import datetime
+import motor.motor_asyncio
+from beanie import Document
+from fastapi_users.db import BeanieBaseUser
 
 
-class User(BaseModel):
-    id: str = Field(default_factory=uuid.uuid4, alias="_id")
+class User(Document):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4)
     username: str
     email: str
     hashed_password: str

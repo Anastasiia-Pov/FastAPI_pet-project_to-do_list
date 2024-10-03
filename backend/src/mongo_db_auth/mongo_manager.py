@@ -1,8 +1,9 @@
 import logging
 from typing import Optional, Union
+import uuid
 
 from fastapi import Depends, Request
-from fastapi_users import (BaseUserManager, IntegerIDMixin,
+from fastapi_users import (BaseUserManager, UUIDIDMixin,
                            InvalidPasswordException, exceptions, models,
                            schemas)
 
@@ -15,7 +16,7 @@ from config import SECRET_VERIF, SECRET_RESET
 log = logging.getLogger(__name__)
 
 
-class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
+class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET_RESET
     verification_token_secret = SECRET_VERIF
 
