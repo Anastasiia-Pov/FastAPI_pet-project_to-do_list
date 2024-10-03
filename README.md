@@ -44,8 +44,9 @@ backend/
 
 Main points:
 - Authentification and registration of users implemented using FastApiUsers framework;
-- Database - PostgreSQL, work with DB is carried out with async by SQLAlchemy ORM
-           - Mongo DB, work with DB is carried out by motor and PyMongo;
+- Database:
+    - PostgreSQL, work with DB is carried out with async by SQLAlchemy ORM;
+    - Mongo DB, work with DB is carried out by motor and PyMongo;
 - Authentification transport is cookie;
 - Authentification strategy is JWTStrategy.
 
